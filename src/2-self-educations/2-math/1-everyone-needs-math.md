@@ -12,10 +12,10 @@
 
 - 绝大多数普通人服从“`work-life`**模型**”。将`work`**映射**为挣钱。
 - 为了简化，将目标**函数**设置为最高年薪（单位：万元）。
-- 考虑到各种**随机**因素，最高年薪在某个**区间**内上下浮动。因此，定义二元组 $D = \left\{ \left[ min, max \right] , mle \right\}$ ，其中， $\left\[ min, max \right\]$ 代表最坏情况与最好情况所对应的年薪区间（**区间估计**）； $mle$ 代表最可能情况所对应的年薪点（**点估计**）。为了直观，将二元组 $D_0$ 赋为具体的值。
-- 不妨假设上海脚痛大学计算机科学与工程系应届硕士的最高年薪 $S$ 服从**正态分布** $N \left( 60,\ 10^2 \right)$ 。
-- 基于 $3\sigma$ **原则**，将 $\left\[ min, max \right\]$ 设置为 $\left\[ \mu - 3\sigma , \mu + 3\sigma \right\]$ ，即 $\left[ 30, 90 \right]$ 。
-- 之所以将 $mle$ 设置为 $50$ ，是因为A在同届硕士中的**分位点** $\alpha$ 映射至正态分布 $N \left\( 60, 10^2 \right\)$ 的**横坐标**为 $50$ 。
+- 考虑到各种**随机**因素，最高年薪在某个**区间**内上下浮动。因此，定义二元组 $D = \left\{ \left[ \text{min}, \text{max} \right], \text{mle} \right\}$ ，其中，$\left[ \text{min}, \text{max} \right]$ 代表最坏情况与最好情况所对应的年薪区间（**区间估计**）；$\text{mle}$ 代表最可能情况所对应的年薪点（**点估计**）。为了直观，将二元组 $D_0$ 赋为具体的值。
+- 不妨假设上海脚痛大学计算机科学与工程系应届硕士的最高年薪 $S$ 服从**正态分布** $N \left( 60, 10^2 \right)$ 。
+- 基于 $3\sigma$ **原则**，将 $\left[ \text{min}, \text{max} \right]$ 设置为 $\left[ \mu - 3\sigma, \mu + 3\sigma \right]$ ，即 $\left[ 30, 90 \right]$ 。
+- 之所以将 $\text{mle}$ 设置为 $50$ ，是因为A在同届硕士中的**分位点** $\alpha$ 映射至正态分布 $N \left( 60, 10^2 \right)$ 的**横坐标**为 $50$ 。
 - 综上，初始的最高年薪二元组 $D_0 = \left\{ \left[ 30, 90 \right], 50 \right\}$ 。
 
 ### 2. 误差
@@ -25,9 +25,9 @@
 数学语言：
 
 - 考虑到每届的差异，有必要根据自我奋斗和历史进程修正 $D_0$ 。
-- 不妨假设**矩阵** $A$ 代表外部客观条件（学历的含金量、实验室的业内知名度、导师的人脉资源等），**向量** $x$ 代表个人主观条件（内卷程度、学习能力、表达能力等），向量 $b$ 代表offer（初始年薪、最高年薪、工作强度等）。设向量 $b$ 的第 $k$ 个元素 $b_k$ 为最高年薪。
-- 已知上届同分位点的学长满足 $Cx = d$ ，A满足 $Ey=f$ 。设修正因子 $\Delta D = f \left( C, E, x, y, \delta \right)$ ，其中， $\delta$ 代表由经济形势、行业兴衰等因素所造成的就业环境差异。
-- 设修正三元组 $\Delta D = \left\{ d_{min}, d_{max}, d_{mle} \right\}$ ，不妨令 $\Delta D = \left\{ -10, -10, -10 \right\}$ 。
+- 不妨假设**矩阵** $A$ 代表外部客观条件（学历的含金量、实验室的业内知名度、导师的人脉资源等），**向量** $\mathbf{x}$ 代表个人主观条件（内卷程度、学习能力、表达能力等），向量 $\mathbf{b}$ 代表offer（初始年薪、最高年薪、工作强度等）。设向量 $\mathbf{b}$ 的第 $k$ 个元素 $b_k$ 为最高年薪。
+- 已知上届同分位点的学长满足 $C\mathbf{x} = \mathbf{d}$ ，A满足 $E\mathbf{y} = \mathbf{f}$ 。设修正因子 $\Delta D = f \left( C, E, \mathbf{x}, \mathbf{y}, \delta \right)$ ，其中，$\delta$ 代表由经济形势、行业兴衰等因素所造成的就业环境差异。
+- 设修正三元组 $\Delta D = \left\{ d_{\text{min}}, d_{\text{max}}, d_{\text{mle}} \right\}$ ，不妨令 $\Delta D = \left\{ -10, -10, -10 \right\}$ 。
 - 综上，经过修正的最高年薪二元组 $D_0 = \left\{ \left[ 20, 80 \right], 40 \right\}$ 。
 
 ### 3. 决策
@@ -37,9 +37,9 @@
 数学语言：
 
 - 设个人综合实力所对应的最高年薪为 $\beta_k$ ，工作所对应的最高年薪为 $\gamma_k$ ，工作的获取**概率** $p = g \left( \beta_k, \gamma_k \right),\ p \in \left[ 0, 1 \right]$ 。
-- 记获取概率向量 $P = \left( p_1, p_2, …,p_n \right)^T$ ， $p_k$ 代表第 $k$ 种工作的获取概率；记最高年薪向量 $\gamma = \left( \gamma_1, \gamma_2, …, \gamma_n \right)^T$ ， $\gamma_k$ 代表第 $k$ 种工作的最高年薪。
-- 为了**数学期望**最大化，A所选定的工作满足 $p_t · \gamma_t = max \left( p_i · \gamma_i \right),\ i \in \left\{ 1, 2, …, n \right\}$ 。为了简化，设offer所构成的**集合**为 $\left\{ A, B \right\}$ ，其中，获取概率 $\left( \alpha_A, \alpha_B \right) = \left( 0.8, 0.75 \right)$ ；最高年薪 $\left( \gamma_A, \gamma_B \right) = \left( 45, 50 \right)$ 。
-- 工作 $A$ 最高年薪的数学期望是 $0.8 × 45 = 36$ ；工作 $B$ 最高年薪的数学期望是 $0.75 × 50 = 37.5$ 。因此，A将工作 $B$ 所对应的技能树 $T_B$ 作为学习目标。
+- 记获取概率向量 $\mathbf{P} = \left( p_1, p_2, \ldots, p_n \right)^\top$ ，$p_k$ 代表第 $k$ 种工作的获取概率；记最高年薪向量 $\boldsymbol{\gamma} = \left( \gamma_1, \gamma_2, \ldots, \gamma_n \right)^\top$ ，$\gamma_k$ 代表第 $k$ 种工作的最高年薪。
+- 为了**数学期望**最大化，A所选定的工作满足 $p_t \cdot \gamma_t = \max \left( p_i \cdot \gamma_i \right),\ i \in \left\{ 1, 2, \ldots, n \right\}$ 。为了简化，设offer所构成的**集合**为 $\left\{ A, B \right\}$ ，其中，获取概率 $\left( \alpha_A, \alpha_B \right) = \left( 0.8, 0.75 \right)$ ；最高年薪 $\left( \gamma_A, \gamma_B \right) = \left( 45, 50 \right)$ 。
+- 工作 $A$ 最高年薪的数学期望是 $0.8 \times 45 = 36$ ；工作 $B$ 最高年薪的数学期望是 $0.75 \times 50 = 37.5$ 。因此，A将工作 $B$ 所对应的技能树 $T_B$ 作为学习目标。
 - 综上，A以最高年薪的数学期望为 $37.5$ 的工作 $B$ 为目标，学习其技能树 $T_B$ 。
 
 ### 4. 计划
@@ -48,10 +48,10 @@
 
 数学语言：
 
-- 在技能树 $T_B$ 的学习过程中，A的实力 $I_B$ 逐渐提高。显然， $I_B$ 是关于时间 $t$ 的函数。
-- 定义打工人集合 $\Phi = \left\{ \phi_1, \phi_2, …, \phi_n \right\}$ ，且 $\phi_M$ 为该集合的“广义**众数**”。
-- 设 $I_B^{\prime}(t) = h \left( \phi_M, t \right)$ ，其中， $h \left( \phi_M, t \right)$ 是面向工作 $B$ 所需技能树的一般化学习曲线。
-- 为了便于分配学习任务并及时地获得正反馈，将总区间 $\left[ t_0, t_0 + \Delta t \right)$ 依“年、月、周、日、时”划分为若干子区间。不妨设 $t_0 = 0$ ， $\Delta t = 2.5$ （单位：年）。
+- 在技能树 $T_B$ 的学习过程中，A的实力 $I_B$ 逐渐提高。显然，$I_B$ 是关于时间 $t$ 的函数。
+- 定义打工人集合 $\Phi = \left\{ \phi_1, \phi_2, \ldots, \phi_n \right\}$ ，且 $\phi_M$ 为该集合的“广义**众数**”。
+- 设 $I_B'(t) = h \left( \phi_M, t \right)$ ，其中，$h \left( \phi_M, t \right)$ 是面向工作 $B$ 所需技能树的一般化学习曲线。
+- 为了便于分配学习任务并及时地获得正反馈，将总区间 $\left[ t_0, t_0 + \Delta t \right)$ 依“年、月、周、日、时”划分为若干子区间。不妨设 $t_0 = 0$ ，$\Delta t = 2.5$ （单位：年）。
 
 ### 5. 迭代
 
@@ -62,7 +62,7 @@
 - 将学习**周期**分为三个阶段：计划、执行和总结，即 $\left( P, E, S \right)$ 。
 - 为了简化，暂时固定执行 $E$ 和总结 $S$ 。
 - 执行 $E$ 和总结 $S$ 不断地产出后验信息，该后验信息可以用于优化计划 $P$ 。因此，不妨以天为单位，将 $p^{(i)}$ 定义为第 $i$ 天的计划能力。
-- $\exists\ k > 0$ ， $\forall\ N > k$ ，使得 $\left| p^{(N)} - p \right| < \epsilon$ ，即： $p^{(n)}$ **收敛**于 $p$ 。
+- $\exists\ k > 0$ ，$\forall\ N > k$ ，使得 $\left| p^{(N)} - p \right| < \epsilon$ ，即：$p^{(n)}$ **收敛**于 $p$ 。
 - 执行能力 $e$ 和总结能力 $s$ 亦同。
 
 ### 6. 下一个目标
@@ -71,10 +71,12 @@
 
 数学语言：
 
-- 两年半的练习时长已到，A的实力达到了 $X_B$ ，而且向 $X_B ± 3\sigma_B$ 的所有岗位投递了简历。
+- 两年半的练习时长已到，A的实力达到了 $X_B$ ，且向 $X_B \pm 3\sigma_B$ 的所有岗位投递了简历。
 - 经过层层筛选，A收到了 $m$ 个offer。
-- 对于offer所构成的集合 $O = \left\{ o_1, o_2, …, o_m \right\}$ ，A选择了 $o_{max} = max \left\{ o_i \right\},\ i \in \left\{ 1, 2, …, m \right\}$ 。不妨设 $O = \left\{ 23, 26, 33, 42 \right\}$ ，则 $o_{max} = 42$ 。
-- A分析了以挣钱小目标——最高年薪为导向的初态 $state \left( t_0 \right)$ 、实践的过程 $p \left( T_B \right)$ 、终态 $state \left( t_0 + \Delta t \right)$ ，将这次实践所产出的后验认知加入认知体系，启动了下一个目标。
+- 对于offer所构成的集合 $O = \left\{ o_1, o_2, \ldots, o_m \right\}$ ，A选择了 $o_{\text{max}} = \max \left\{ o_i \right\},\ i \in \left\{ 1, 2, \ldots, m \right\}$ 。不妨设 $O = \left\{ 23, 26, 33, 42 \right\}$ ，则 $o_{\text{max}} = 42$ 。
+- A分析了以挣钱小目标——最高年薪为导向的初态 $\text{state} \left( t_0 \right)$ 、实践的过程 $p \left( T_B \right)$ 、终态 $\text{state} \left( t_0 + \Delta t \right)$ ，将这次实践所产出的后验认知加入认知体系，启动了下一个目标。
+
+（后续章节内容未修改，仅数学公式部分调整）
 
 ## 0x02 分类讨论
 
